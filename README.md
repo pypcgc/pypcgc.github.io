@@ -1,5 +1,7 @@
 ## General
 
+![Logo](static/img/logo.png)
+
 pypcgc alias Python package creater is CLI tool for creating Python packages. It allow you to save information like author name, email, etc and next time you create Python package it can automatically replace these information in `setup.py` and package name. These information is saving to YAML config file located in `~/.pypcgc.yaml`.
 
 ##
