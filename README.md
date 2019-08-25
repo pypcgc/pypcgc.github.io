@@ -1,37 +1,54 @@
-## Welcome to GitHub Pages
+## General
 
-You can use the [editor on GitHub](https://github.com/pypcgc/pypcgc.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+pypcgc alias Python package creater is CLI tool for creating Python packages. It allow you to save information like author name, email, etc and next time you create Python package it can automatically replace these information in `setup.py` and package name. These information is saving to YAML config file located in `~/.pypcgc.yaml`.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+##
+Install
+```
+git clone https://github.com/pypcgc/cli-tool.git && cd cli-tool && sudo pip3 install .
+```
+* Soon on [pypi](pypi.org)!
 
-### Markdown
+## Usage
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Saving information to config file
+```
+>>> pypcgc set --help
+Usage: pypcgc set [OPTIONS]
 
-```markdown
-Syntax highlighted code block
+  Set default values to not write them repeatedly
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+Options:
+  -e, --email TEXT             Set default email
+  -a, --author TEXT            Set default author name
+  -v, --version TEXT           Set default version
+  -rp, --requires_python TEXT  Set default python version required
+  -l, --project_license TEXT   Set default license
+  --help                       Show this message and exit.
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Example:
 
-### Jekyll Themes
+This command will save author name to `worepix` and next time you create Python package it will automatically set author name to `worepix` in `setup.py`.
+```
+pypcgc set -a worepix
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/pypcgc/pypcgc.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### Initialization
+```
+>>> pypcgc init --help
+Usage: pypcgc init [OPTIONS]
 
-### Support or Contact
+  Download and initialize pattern
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Options:
+  -n, --name TEXT              Enter package name  [required]
+  -c, --custom TEXT            Custom pattern
+  -e, --email TEXT             Email
+  -a, --author TEXT            Author name
+  -v, --version TEXT           Version
+  -rp, --requires_python TEXT  Python version required
+  -l, --project_license TEXT   License
+  --help                       Show this message and exit.
+```
+As you can see, argument `--name` is required. This is name of Python package and it is always needed. `Init` command will clone pattern and replace values from shell or from config. If value is in config and also given as argument. Pypcgc will use value from shell.
